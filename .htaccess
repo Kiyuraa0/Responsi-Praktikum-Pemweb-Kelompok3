@@ -1,4 +1,0 @@
-# Cegah eksekusi skrip di folder upload
-<FilesMatch "\.(php|phtml|php3|phar)$">
-  Require all denied
-</FilesMatch>
