@@ -1,0 +1,31 @@
+CREATE DATABASE IF NOT EXISTS gawean CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE gawean;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  phone VARCHAR(20) DEFAULT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('client','provider','admin') NOT NULL DEFAULT 'client',
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE provider_profiles (
+  user_id INT PRIMARY KEY,
+  bio TEXT,
+  skills VARCHAR(255),
+  service_area VARCHAR(150),
+  photo VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE portfolios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(120) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
