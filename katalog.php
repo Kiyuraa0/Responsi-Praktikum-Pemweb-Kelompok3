@@ -84,8 +84,8 @@ require_once __DIR__ . '/partials/header.php';
         </select>
         <input type="number" name="harga_min" placeholder="Harga Min" value="<?= $harga_min ?: ''; ?>">
         <input type="number" name="harga_max" placeholder="Harga Max" value="<?= $harga_max ?: ''; ?>">
-        <button type="submit">Cari</button>
-        <a href="<?= BASE_URL; ?>/katalog.php">Reset</a>
+        <button type="submit" class="btn">Cari</button>
+        <a href="<?= BASE_URL; ?>/katalog.php" class="btn">Reset</a>
     </form>
 
     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;">
@@ -98,7 +98,7 @@ require_once __DIR__ . '/partials/header.php';
                 <p><strong>Kategori:</strong> <?= e($s['nama_kategori']); ?></p>
                 <p><strong>Lokasi:</strong> <?= e($s['nama_wilayah']); ?></p>
                 <p><strong>Harga:</strong> Rp <?= number_format((int)$s['harga'], 0, ',', '.'); ?></p>
-                <a href="<?= BASE_URL; ?>/pesan.php?service_id=<?= $s['id']; ?>">Pesan Jasa Ini</a>
+                <a href="<?= BASE_URL; ?>/pesan.php?service_id=<?= $s['id']; ?>" class="btn">Pesan Jasa Ini</a>
             </div>
             <?php endforeach; ?>
         <?php else: ?>

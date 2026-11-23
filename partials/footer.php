@@ -1,4 +1,4 @@
 </main>
-<footer class="foot">Gawean: platform jasa lokal untuk SDG 8</footer>
+<footer class="foot">Gawean: Platform Jasa Lokal untuk SDG 8</footer>
 </body>
 </html>

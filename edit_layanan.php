@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-$user = require_role('penyedia');
+$user = require_role('provider');
 
 $id = (int)($_GET['id'] ?? 0);
 $stmt = db()->prepare('SELECT * FROM services WHERE id = ? AND provider_id = ?');
@@ -80,8 +80,8 @@ require_once __DIR__ . '/partials/header.php';
         <label>Ganti Foto (Opsional, maks 2 MB)</label><br>
         <input type="file" name="gambar" accept="image/jpeg,image/png,image/webp"><br><br>
 
-        <button type="submit">Update Layanan</button>
-        <a href="<?= BASE_URL; ?>/layanan_saya.php">Batal</a>
+        <button type="submit" class="btn">Update Layanan</button>
+        <a href="<?= BASE_URL; ?>/layanan_saya.php" class="btn">Batal</a>
     </form>
 </div>
 <?php require_once __DIR__ . '/partials/footer.php'; ?>

@@ -30,6 +30,6 @@ require __DIR__ . '/partials/header.php';
     <label>Password <input type="password" name="password" required></label>
     <button class="btn">Masuk</button>
   </form>
-  <p class="muted">Belum punya akun? <a href="register.php">Daftar</a></p>
+  <p class="muted">Belum punya akun? <a href="register.php" class="btn ghost">Daftar</a></p>
 </section>
 <?php require __DIR__ . '/partials/footer.php'; ?>

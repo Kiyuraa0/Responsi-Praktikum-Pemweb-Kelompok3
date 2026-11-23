@@ -29,3 +29,65 @@ CREATE TABLE portfolios (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_kategori VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE locations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_wilayah VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    provider_id INT NOT NULL,
+    category_id INT NOT NULL,
+    location_id INT NOT NULL,
+    judul VARCHAR(150) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    harga INT NOT NULL,
+    gambar VARCHAR(255) NOT NULL,
+    status ENUM('aktif', 'nonaktif') DEFAULT 'aktif',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO categories (nama_kategori) VALUES 
+('Tukang & Renovasi'), ('Jahit & Permak'), ('Kebersihan'), ('Fotografi & Desain');
+
+INSERT INTO locations (nama_wilayah) VALUES 
+('Purwokerto Utara'), ('Purwokerto Selatan'), ('Purwokerto Timur'), ('Purbalingga');
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    service_id INT NOT NULL,
+    client_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    tanggal_pengerjaan DATE NOT NULL,
+    alamat_pengerjaan TEXT NOT NULL,
+    catatan TEXT DEFAULT NULL,
+    total_harga INT NOT NULL,
+    status ENUM('menunggu', 'diterima', 'dikerjakan', 'selesai', 'dibatalkan') NOT NULL DEFAULT 'menunggu',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (provider_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL UNIQUE,
+    service_id INT NOT NULL,
+    client_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    rating TINYINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    komentar TEXT NOT NULL,
+    is_hidden TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (provider_id) REFERENCES users(id) ON DELETE CASCADE
+);

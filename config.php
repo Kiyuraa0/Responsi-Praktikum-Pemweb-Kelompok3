@@ -6,7 +6,7 @@ const DB_HOST = 'localhost';
 const DB_NAME = 'gawean';
 const DB_USER = 'root';
 const DB_PASS = '';
-const BASE_URL = '/gawean';          // sesuaikan dengan nama folder di htdocs
+const BASE_URL = '/Responsi-Praktikum-Pemweb-Kelompok3';          // sesuaikan dengan nama folder di htdocs
 const UPLOAD_DIR = __DIR__ . '/uploads/';
 
 function db(): PDO {

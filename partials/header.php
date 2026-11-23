@@ -17,6 +17,7 @@
         <a href="<?= BASE_URL ?>/admin/users.php">Pengguna</a>
       <?php else: ?>
         <a href="<?= BASE_URL ?>/profile.php">Profil saya</a>
+        <a href="<?= BASE_URL ?>/dashboard.php">Dashboard saya</a>
       <?php endif; ?>
       <a href="<?= BASE_URL ?>/logout.php">Keluar (<?= e($u['name']) ?>)</a>
     <?php else: ?>

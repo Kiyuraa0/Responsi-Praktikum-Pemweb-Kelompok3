@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-$user = require_role('penyedia');
+$user = require_role('provider');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hapus_id'])) {
     csrf_check();
@@ -32,7 +32,7 @@ require_once __DIR__ . '/partials/header.php';
 ?>
 <div class="container">
     <h2>Layanan Saya</h2>
-    <p><a href="<?= BASE_URL; ?>/tambah_layanan.php">+ Tambah Layanan Baru</a></p>
+    <p><a href="<?= BASE_URL; ?>/tambah_layanan.php" class="btn">+ Tambah Layanan Baru</a></p>
     <table border="1" cellpadding="10" cellspacing="0" width="100%">
         <thead><tr><th>Gambar</th><th>Judul</th><th>Kategori</th><th>Lokasi</th><th>Harga</th><th>Status</th><th>Aksi</th></tr></thead>
         <tbody>
@@ -45,11 +45,11 @@ require_once __DIR__ . '/partials/header.php';
                 <td>Rp <?= number_format((int)$row['harga'], 0, ',', '.'); ?></td>
                 <td><?= e($row['status']); ?></td>
                 <td>
-                    <a href="<?= BASE_URL; ?>/edit_layanan.php?id=<?= $row['id']; ?>">Edit</a> |
+                    <a href="<?= BASE_URL; ?>/edit_layanan.php?id=<?= $row['id']; ?>" class="btn">Edit</a> |
                     <form method="POST" style="display:inline;" onsubmit="return confirm('Hapus layanan ini?')">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="hapus_id" value="<?= $row['id']; ?>">
-                        <button type="submit">Hapus</button>
+                        <button type="submit" class="btnghost">Hapus</button>
                     </form>
                 </td>
             </tr>

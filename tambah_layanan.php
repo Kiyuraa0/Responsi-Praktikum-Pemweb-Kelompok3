@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
-$user = require_role('penyedia');
+$user = require_role('provider');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
@@ -65,8 +65,8 @@ require_once __DIR__ . '/partials/header.php';
         <label>Foto Layanan (Maks 2 MB: JPG/PNG/WEBP)</label><br>
         <input type="file" name="gambar" accept="image/jpeg,image/png,image/webp" required><br><br>
 
-        <button type="submit">Simpan Layanan</button>
-        <a href="<?= BASE_URL; ?>/layanan_saya.php">Batal</a>
+        <button type="submit" class="btn">Simpan Layanan</button>
+        <a href="<?= BASE_URL; ?>/layanan_saya.php" class="btn ghost">Batal</a>
     </form>
 </div>
 <?php require_once __DIR__ . '/partials/footer.php'; ?>
