@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="<?= BASE_URL ?>/">Gawean</a>
+  <a class="brand" href="<?= BASE_URL ?>/"><img src="<?= BASE_URL ?>/assets/gawean_logo.png" alt="Gawean" class="brand-logo"></a>
   <nav>
     <?php if ($u): ?>
       <?php if ($u['role'] === 'admin'): ?>
